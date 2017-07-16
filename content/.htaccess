@@ -1,0 +1,16 @@
+Options +MultiViews
+
+ErrorDocument 404 /aggregator/index.php
+RewriteEngine on 
+
+RewriteRule ^post/(\d+)\/comment\/(\d+)$ post.php?id=$1&comment=$2 [L]
+RewriteRule ^post/([^/\.]+)/?$ post.php?id=$1 [L]
+RewriteRule ^user/([^/\.]+)\/page\/(\d+)$ user.php?id=$1&page=$2 [L]
+RewriteRule ^user/([^/\.]+)/?$ user.php?id=$1 [L]
+RewriteRule ^page/([^/\.]+)/?$ index.php?page=$1 [L]
+RewriteRule ^messages/page/([^/\.]+)/?$ messages.php?page=$1 [L]
+RewriteRule ^index/page/([^/\.]+)/?$ index.php?page=$1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
